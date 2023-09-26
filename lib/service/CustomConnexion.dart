@@ -12,9 +12,15 @@ class CustomConnexion {
     }
   }
 
-  static Future<String> disconnectUser() async {
+  static Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
+  static Future<String> signIn(
+      {required String email, required String password}) async {
     try {
-      await FirebaseAuth.instance.signOut();
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
       return "OK";
     } on FirebaseAuthException catch (e) {
       return e.code;

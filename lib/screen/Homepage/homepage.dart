@@ -8,20 +8,22 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () async {
+            await CustomConnexion.signOut();
+            Navigator.popAndPushNamed(context, CustomRouter.connexion);
+          },
+          icon: Icon(
+            Icons.close,
+            color: Colors.red,
+          ),
+        ),
+      ),
       body: Center(
         child: Column(
           children: [
             Text("Homepage"),
-            ElevatedButton(
-                onPressed: () {
-                  CustomConnexion.disconnectUser().then((value) {
-                    if (value == "OK") {
-                      Navigator.pushNamed(context, CustomRouter.connexion);
-                    }
-                  });
-                },
-                child: Text("se déconnecté"))
           ],
         ),
       ),

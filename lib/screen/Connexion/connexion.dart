@@ -26,7 +26,7 @@ class Connexion extends StatelessWidget {
           onPressed: () {
             if (_controllerEmail.text.isEmpty ||
                 _controllerPassword.text.isEmpty) return;
-            CustomConnexion.createUser(
+            CustomConnexion.signIn(
                     email: _controllerEmail.text,
                     password: _controllerPassword.text)
                 .then((value) {
@@ -36,9 +36,13 @@ class Connexion extends StatelessWidget {
                 print(value);
               }
             });
-            Navigator.pushNamed(context, CustomRouter.homepage);
           },
         ),
+        ElevatedButton(
+            onPressed: () {
+              Navigator.pushNamed(context, CustomRouter.inscription);
+            },
+            child: Text("S'inscrire"))
       ],
     ));
   }
